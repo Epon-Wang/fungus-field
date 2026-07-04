@@ -58,7 +58,7 @@ Expected: each command exits non-zero before implementation.
 
 - [ ] **Step 1: Create the static HTML pages and assets**
 
-Use complete HTML documents for each page. Use root-relative links such as `/assets/css/style.css` and `/posts/first-post/` so GitHub Pages serves them correctly from `fungus-field.github.io`.
+Use complete HTML documents for each page. Use relative links such as `assets/css/style.css`, `posts/first-post/`, and `../../assets/css/style.css` so the project site works under `https://epon-wang.github.io/fungus-field/`.
 
 ### Task 3: Verification
 
