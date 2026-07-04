@@ -1,8 +1,9 @@
 (function () {
   const storageKey = "fungus-field-theme";
   const body = document.body;
+  const root = document.documentElement;
   const toggle = document.getElementById("theme-toggle");
-  const icon = toggle ? toggle.querySelector(".theme-toggle__icon") : null;
+  let transitionTimer = null;
 
   function prefersDark() {
     return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -11,9 +12,19 @@
   function applyTheme(theme) {
     const isDark = theme === "dark";
     body.classList.toggle("dark", isDark);
-    if (icon) {
-      icon.textContent = isDark ? "☀" : "☾";
+    if (toggle) {
+      toggle.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+      toggle.setAttribute("aria-pressed", String(isDark));
     }
+  }
+
+  function transitionTheme() {
+    root.classList.add("transition");
+    root.offsetWidth;
+    window.clearTimeout(transitionTimer);
+    transitionTimer = window.setTimeout(function () {
+      root.classList.remove("transition");
+    }, 750);
   }
 
   const savedTheme = localStorage.getItem(storageKey);
@@ -23,6 +34,7 @@
     toggle.addEventListener("click", function () {
       const nextTheme = body.classList.contains("dark") ? "light" : "dark";
       localStorage.setItem(storageKey, nextTheme);
+      transitionTheme();
       applyTheme(nextTheme);
     });
   }

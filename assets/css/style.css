@@ -8,9 +8,11 @@
   --content: #343941;
   --code-bg: #eef1f5;
   --border: #d9dee7;
-  --accent: #1f6feb;
-  --accent-hover: #174ea6;
+  --accent: #b509ac;
+  --accent-hover: #b509ac;
   --shadow: 0 16px 40px rgba(31, 35, 40, 0.06);
+  --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 body.dark {
@@ -23,8 +25,8 @@ body.dark {
   --content: #d2d5dc;
   --code-bg: #343740;
   --border: #3e424b;
-  --accent: #8ab4f8;
-  --accent-hover: #b8d3ff;
+  --accent: #2698ba;
+  --accent-hover: #2698ba;
   --shadow: none;
 }
 
@@ -36,12 +38,29 @@ html {
   scroll-behavior: smooth;
 }
 
+html.transition,
+html.transition *,
+html.transition *::before,
+html.transition *::after {
+  transition: all 750ms !important;
+  transition-delay: 0ms !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.transition,
+  html.transition *,
+  html.transition *::before,
+  html.transition *::after {
+    transition-duration: 0ms !important;
+  }
+}
+
 body {
   min-height: 100vh;
   margin: 0;
   background: var(--theme);
   color: var(--primary);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-base);
   font-size: 18px;
   line-height: 1.7;
   text-rendering: optimizeLegibility;
@@ -75,7 +94,47 @@ a:hover {
   gap: 20px;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-back {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--secondary);
+  font-size: 0;
+  line-height: 1;
+  overflow: hidden;
+}
+
+.home-back:hover {
+  border-color: var(--accent);
+  background: var(--tertiary);
+  color: var(--accent);
+}
+
+.home-back::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translate(-35%, -50%) rotate(45deg);
+}
+
 .logo {
+  font-family: var(--font-base);
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0;
@@ -86,30 +145,116 @@ a:hover {
   align-items: center;
   gap: 18px;
   color: var(--secondary);
+  font-family: var(--font-base);
   font-size: 0.92rem;
   font-weight: 500;
 }
 
 .nav-actions a[aria-current="page"] {
-  color: var(--primary);
-  border-bottom: 2px solid var(--primary);
+  color: var(--accent);
 }
 
 .theme-toggle {
-  width: 36px;
-  height: 36px;
-  display: inline-grid;
-  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-left: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  padding: 0;
   border: 0;
-  border-radius: 999px;
-  background: transparent;
+  background-color: inherit;
   color: var(--primary);
   cursor: pointer;
   font: inherit;
+  line-height: 1;
 }
 
 .theme-toggle:hover {
-  background: var(--tertiary);
+  color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.theme-toggle__icon {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex: 0 0 18px;
+}
+
+.theme-toggle__icon--sun {
+  display: block;
+}
+
+.theme-toggle__icon--moon {
+  display: none;
+}
+
+body.dark .theme-toggle__icon--sun {
+  display: none;
+}
+
+body.dark .theme-toggle__icon--moon {
+  display: block;
+}
+
+.theme-toggle__icon--sun::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.theme-toggle__icon--sun::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow:
+    0 -8px 0 currentColor,
+    0 8px 0 currentColor,
+    8px 0 0 currentColor,
+    -8px 0 0 currentColor,
+    5.65px 5.65px 0 currentColor,
+    -5.65px 5.65px 0 currentColor,
+    5.65px -5.65px 0 currentColor,
+    -5.65px -5.65px 0 currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.theme-toggle__icon--moon::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.theme-toggle__icon--moon::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--theme);
 }
 
 .main {
@@ -135,7 +280,8 @@ a:hover {
 
 .home-info h1 {
   margin: 0 0 10px;
-  font-size: 2rem;
+  font-size: 2.1rem;
+  font-weight: 700;
   line-height: 1.25;
 }
 
@@ -162,7 +308,7 @@ a:hover {
 
 .entry-header h2 {
   margin: 0;
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   line-height: 1.3;
 }
 
@@ -181,6 +327,7 @@ a:hover {
   flex-wrap: wrap;
   gap: 12px;
   color: var(--secondary);
+  font-family: var(--font-base);
   font-size: 0.86rem;
 }
 
@@ -228,6 +375,7 @@ a:hover {
   gap: 8px;
   margin-bottom: 24px;
   color: var(--secondary);
+  font-family: var(--font-base);
   font-size: 0.92rem;
 }
 
@@ -261,7 +409,7 @@ a:hover {
 
 .post-header h1 {
   margin: 0 0 12px;
-  font-size: 2.4rem;
+  font-size: 2.55rem;
   line-height: 1.2;
 }
 
@@ -299,6 +447,7 @@ code {
   padding: 0.12em 0.3em;
   border-radius: 4px;
   background: var(--code-bg);
+  font-family: var(--font-mono);
   font-size: 0.92em;
 }
 
@@ -329,6 +478,7 @@ pre code {
   margin: 0 auto;
   padding: 28px 0 40px;
   color: var(--secondary);
+  font-family: var(--font-base);
   font-size: 0.86rem;
   text-align: center;
   border-top: 1px solid var(--border);
@@ -374,6 +524,10 @@ pre code {
     width: 100%;
     flex-wrap: wrap;
     gap: 12px 16px;
+  }
+
+  .theme-toggle {
+    margin-left: auto;
   }
 
   .home-info,

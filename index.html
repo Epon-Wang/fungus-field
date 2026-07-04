@@ -11,15 +11,19 @@
   <body class="list-page" id="top">
     <header class="site-header">
       <nav class="nav" aria-label="Main navigation">
-        <a class="logo" href="index.html" aria-label="Fungus Field home">Fungus Field</a>
+        <div class="brand">
+          <a class="home-back" href="https://epon-wang.github.io/" aria-label="Back to epon-wang.github.io">&lt;</a>
+          <a class="logo" href="index.html" aria-label="Fungus Field home">Fungus Field</a>
+        </div>
         <div class="nav-actions">
-          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
-            <span class="theme-toggle__icon" aria-hidden="true">☾</span>
-          </button>
           <a href="index.html" aria-current="page">Posts</a>
           <a href="archives.html">Archive</a>
           <a href="search.html">Search</a>
           <a href="faq.html">FAQ</a>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Change theme" title="Change theme">
+            <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"></span>
+            <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"></span>
+          </button>
         </div>
       </nav>
     </header>
@@ -48,7 +52,7 @@
     </main>
 
     <footer class="site-footer">
-      <span>© 2026 Fungus Field</span>
+      <span>© 2026 Yipeng Wang</span>
     </footer>
 
     <a class="back-to-top" href="#top" aria-label="Back to top">↑</a>
