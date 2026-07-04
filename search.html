@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" dir="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Search Fungus Field posts.">
+    <title>Search | Fungus Field</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script defer src="/assets/js/main.js"></script>
+  </head>
+  <body id="top">
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="logo" href="/" aria-label="Fungus Field home">Fungus Field</a>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
+            <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+          </button>
+          <a href="/">Posts</a>
+          <a href="/archives.html">Archive</a>
+          <a href="/search.html" aria-current="page">Search</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main" data-search-root>
+      <header class="page-header">
+        <h1>Search</h1>
+      </header>
+
+      <label class="search-box">
+        <span>Search posts</span>
+        <input id="search-input" type="search" placeholder="Title, tag, or keyword" autocomplete="off">
+      </label>
+
+      <section class="search-results" id="search-results" aria-live="polite">
+        <article class="post-entry" data-search-item data-title="first post" data-summary="sample article typora exported html static site" data-tags="blog">
+          <header class="entry-header">
+            <h2><a href="/posts/first-post/">First Post</a></h2>
+          </header>
+          <div class="entry-content">
+            <p>A sample article page showing where Typora-exported HTML can live inside this static site.</p>
+          </div>
+          <footer class="entry-footer">
+            <time datetime="2026-07-04">2026-07-04</time>
+            <span>blog</span>
+          </footer>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Fungus Field</span>
+    </footer>
+
+    <a class="back-to-top" href="#top" aria-label="Back to top">↑</a>
+  </body>
+</html>

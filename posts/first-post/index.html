@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" dir="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A sample post for the Fungus Field static HTML blog.">
+    <title>First Post | Fungus Field</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script defer src="/assets/js/main.js"></script>
+  </head>
+  <body id="top">
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="logo" href="/" aria-label="Fungus Field home">Fungus Field</a>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
+            <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+          </button>
+          <a href="/">Posts</a>
+          <a href="/archives.html">Archive</a>
+          <a href="/search.html">Search</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <article class="post-single">
+        <header class="post-header">
+          <h1>First Post</h1>
+          <div class="post-meta">
+            <time datetime="2026-07-04">2026-07-04</time>
+            <span>blog</span>
+          </div>
+        </header>
+
+        <div class="post-content">
+          <p>This is a sample article page for the static HTML version of Fungus Field.</p>
+
+          <p>When you export a post from Typora, keep this page shell and replace the content inside <code>&lt;div class="post-content"&gt;</code> with the exported article body. If Typora exports a complete HTML document, copy only the article body into this region so the site keeps the same navigation, theme toggle, and typography.</p>
+
+          <h2>Suggested workflow</h2>
+          <ol>
+            <li>Create a folder like <code>posts/my-new-post/</code>.</li>
+            <li>Copy this file to <code>posts/my-new-post/index.html</code>.</li>
+            <li>Replace the title, date, tags, meta description, and article body.</li>
+            <li>Add links on the home, archive, and search pages.</li>
+          </ol>
+
+          <pre><code>&lt;article class="post-single"&gt;
+  &lt;header class="post-header"&gt;...&lt;/header&gt;
+  &lt;div class="post-content"&gt;
+    Your Typora-exported article body goes here.
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 Fungus Field</span>
+    </footer>
+
+    <a class="back-to-top" href="#top" aria-label="Back to top">↑</a>
+  </body>
+</html>

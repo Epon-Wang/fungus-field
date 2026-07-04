@@ -1,0 +1,393 @@
+:root {
+  color-scheme: light;
+  --theme: #f7f8fa;
+  --entry: #ffffff;
+  --primary: #1f2328;
+  --secondary: #5d6673;
+  --tertiary: #eef1f5;
+  --content: #343941;
+  --code-bg: #eef1f5;
+  --border: #d9dee7;
+  --accent: #1f6feb;
+  --accent-hover: #174ea6;
+  --shadow: 0 16px 40px rgba(31, 35, 40, 0.06);
+}
+
+body.dark {
+  color-scheme: dark;
+  --theme: #1d1e20;
+  --entry: #2a2c31;
+  --primary: #eeeeef;
+  --secondary: #a7abb3;
+  --tertiary: #383b42;
+  --content: #d2d5dc;
+  --code-bg: #343740;
+  --border: #3e424b;
+  --accent: #8ab4f8;
+  --accent-hover: #b8d3ff;
+  --shadow: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--theme);
+  color: var(--primary);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--theme) 92%, transparent);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.nav {
+  width: min(100% - 32px, 980px);
+  min-height: 64px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--secondary);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.nav-actions a[aria-current="page"] {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  font: inherit;
+}
+
+.theme-toggle:hover {
+  background: var(--tertiary);
+}
+
+.main {
+  width: min(100% - 32px, 760px);
+  margin: 0 auto;
+  padding: 34px 0 72px;
+}
+
+.home-info,
+.post-entry,
+.post-single,
+.not-found {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.home-info {
+  padding: 30px;
+  margin-bottom: 22px;
+}
+
+.home-info h1 {
+  margin: 0 0 10px;
+  font-size: 2rem;
+  line-height: 1.25;
+}
+
+.home-info p {
+  margin: 0;
+  color: var(--secondary);
+}
+
+.post-list {
+  display: grid;
+  gap: 16px;
+}
+
+.post-entry {
+  position: relative;
+  padding: 24px;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+
+.post-entry:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.entry-header h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.3;
+}
+
+.entry-content {
+  color: var(--secondary);
+  font-size: 0.98rem;
+}
+
+.entry-content p {
+  margin: 12px 0;
+}
+
+.entry-footer,
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--secondary);
+  font-size: 0.86rem;
+}
+
+.entry-link {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+}
+
+.page-header {
+  margin: 8px 0 28px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 2.25rem;
+}
+
+.archive-year h2 {
+  margin: 0 0 14px;
+  font-size: 1.5rem;
+}
+
+.archive-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.archive-list li {
+  display: flex;
+  gap: 18px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.archive-list time {
+  min-width: 112px;
+  color: var(--secondary);
+  font-size: 0.92rem;
+}
+
+.search-box {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+  color: var(--secondary);
+  font-size: 0.92rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--entry);
+  color: var(--primary);
+  font: inherit;
+}
+
+.search-box input:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-color: var(--accent);
+}
+
+.search-results {
+  display: grid;
+  gap: 16px;
+}
+
+.post-single {
+  padding: 34px;
+}
+
+.post-header {
+  margin-bottom: 30px;
+}
+
+.post-header h1 {
+  margin: 0 0 12px;
+  font-size: 2.4rem;
+  line-height: 1.2;
+}
+
+.post-content {
+  color: var(--content);
+}
+
+.post-content h2,
+.post-content h3 {
+  margin-top: 2rem;
+  line-height: 1.25;
+  color: var(--primary);
+}
+
+.post-content p,
+.post-content ol,
+.post-content ul {
+  margin: 0 0 1.2rem;
+}
+
+.post-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+code {
+  padding: 0.12em 0.3em;
+  border-radius: 4px;
+  background: var(--code-bg);
+  font-size: 0.92em;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--code-bg);
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.not-found {
+  padding: 54px 30px;
+  text-align: center;
+}
+
+.not-found h1 {
+  margin: 0 0 10px;
+  font-size: 4rem;
+}
+
+.site-footer {
+  width: min(100% - 32px, 980px);
+  margin: 0 auto;
+  padding: 28px 0 40px;
+  color: var(--secondary);
+  font-size: 0.86rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.back-to-top {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--entry);
+  color: var(--secondary);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  body {
+    font-size: 16px;
+  }
+
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 16px 0;
+  }
+
+  .nav-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+  }
+
+  .home-info,
+  .post-entry,
+  .post-single {
+    padding: 22px;
+  }
+
+  .post-header h1 {
+    font-size: 2rem;
+  }
+
+  .archive-list li {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
