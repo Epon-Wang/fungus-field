@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A sample post for the Fungus Field static HTML blog.">
+    <!-- generated:post-head:start -->
+    <meta name="description" content="A sample article page showing where Typora-exported HTML can live inside this static site.">
     <title>First Post | Fungus Field</title>
+    <!-- generated:post-head:end -->
     <link rel="stylesheet" href="../../assets/css/style.css">
     <script defer src="../../assets/js/main.js"></script>
   </head>
@@ -18,8 +20,8 @@
         <div class="nav-actions">
           <a href="../../index.html">Posts</a>
           <a href="../../archives.html">Archive</a>
+          <a href="../../topics.html">Topics</a>
           <a href="../../search.html">Search</a>
-          <a href="../../faq.html">FAQ</a>
           <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Change theme" title="Change theme">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"></span>
@@ -28,32 +30,37 @@
       </nav>
     </header>
 
-    <main class="main">
-      <article class="post-single">
+    <main class="main main--post">
+      <article class="post-single post-single--typora">
         <header class="post-header">
+          <!-- generated:post-header:start -->
           <h1>First Post</h1>
           <div class="post-meta">
             <time datetime="2026-07-04">2026-07-04</time>
-            <span>blog</span>
+            <span class="entry-tags" aria-label="Tags">
+              <a class="tag" href="../../search.html?tag=blog">blog</a>
+            </span>
           </div>
+          <!-- generated:post-header:end -->
         </header>
 
-        <div class="post-content">
+        <div class="post-content typora-content">
           <p>This is a sample article page for the static HTML version of Fungus Field.</p>
 
-          <p>When you export a post from Typora, keep this page shell and replace the content inside <code>&lt;div class="post-content"&gt;</code> with the exported article body. If Typora exports a complete HTML document, copy only the article body into this region so the site keeps the same navigation, theme toggle, and typography.</p>
+          <p>When you export a post from Typora, keep this page shell and replace the content inside <code>&lt;div class="post-content typora-content"&gt;</code> with the exported article body. Edit the title, date, URL, summary, and tags only in <code>posts.json</code>; the generator rewrites the post header and list pages from that file.</p>
 
           <h2>Suggested workflow</h2>
           <ol>
             <li>Create a folder like <code>posts/my-new-post/</code>.</li>
             <li>Copy this file to <code>posts/my-new-post/index.html</code>.</li>
-            <li>Replace the title, date, tags, meta description, and article body.</li>
-            <li>Add links on the home, archive, and search pages.</li>
+            <li>Replace only the article body inside <code>&lt;div class="post-content typora-content"&gt;</code>.</li>
+            <li>Add or update <code>title</code>, <code>date</code>, <code>url</code>, <code>summary</code>, and <code>tags</code> in <code>posts.json</code>.</li>
+            <li>Run <code>python3 scripts/generate-list-pages.py</code>.</li>
           </ol>
 
-          <pre><code>&lt;article class="post-single"&gt;
+          <pre><code>&lt;article class="post-single post-single--typora"&gt;
   &lt;header class="post-header"&gt;...&lt;/header&gt;
-  &lt;div class="post-content"&gt;
+  &lt;div class="post-content typora-content"&gt;
     Your Typora-exported article body goes here.
   &lt;/div&gt;
 &lt;/article&gt;</code></pre>

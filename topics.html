@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="How to maintain the Fungus Field static blog.">
-    <title>FAQ | Fungus Field</title>
+    <meta name="description" content="Browse Fungus Field posts by tag.">
+    <title>Topics | Fungus Field</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <script defer src="assets/js/main.js"></script>
   </head>
@@ -18,8 +18,8 @@
         <div class="nav-actions">
           <a href="index.html">Posts</a>
           <a href="archives.html">Archive</a>
+          <a href="topics.html" aria-current="page">Topics</a>
           <a href="search.html">Search</a>
-          <a href="faq.html" aria-current="page">FAQ</a>
           <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Change theme" title="Change theme">
             <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true"></span>
             <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true"></span>
@@ -29,26 +29,17 @@
     </header>
 
     <main class="main">
-      <article class="post-single">
-        <header class="post-header">
-          <h1>FAQ</h1>
-        </header>
-        <div class="post-content">
-          <h2>How do I add a post?</h2>
-          <ol>
-            <li>Export the article from Typora as HTML.</li>
-            <li>Create a folder under <code>posts/</code>, for example <code>posts/my-note/</code>.</li>
-            <li>Put the exported article into <code>posts/my-note/index.html</code>.</li>
-            <li>Add a card to <code>index.html</code>, a row to <code>archives.html</code>, and a search item to <code>search.html</code>.</li>
-          </ol>
+      <header class="page-header">
+        <h1>Topics</h1>
+      </header>
 
-          <h2>What should a post page contain?</h2>
-          <p>Use <code>posts/first-post/index.html</code> as the template. Keep the shared header, footer, stylesheet, and script links, then replace the title, metadata, and article body.</p>
-
-          <h2>Do I need a build command?</h2>
-          <p>No. This site is plain static HTML, CSS, and JavaScript. A local static server is enough for previewing.</p>
-        </div>
-      </article>
+      <!-- generated:topics:start -->
+      <section class="topics-list" aria-label="All tags">
+        <a class="tag tag--large" href="search.html?tag=logical-positivism">logical-positivism <span>(1)</span></a>
+        <a class="tag tag--large" href="search.html?tag=ordinary-language-philosophy">ordinary-language-philosophy <span>(4)</span></a>
+        <a class="tag tag--large" href="search.html?tag=philosophy-of-language">philosophy-of-language <span>(10)</span></a>
+      </section>
+      <!-- generated:topics:end -->
     </main>
 
     <footer class="site-footer">

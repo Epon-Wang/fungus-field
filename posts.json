@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Frege, On Sense and Nominatum",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_frege/",
+    "summary": "Frege's ideas on what is the meaning of a name",
+    "tags": ["philosophy-of-language"]
+  },
+  {
+    "title": "Russell, On Denoting",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_russell/",
+    "summary": "Russell's ideas on Quantifier Expressions (QE)",
+    "tags": ["philosophy-of-language"]
+  },
+  {
+    "title": "Ayer & Logical Positivism",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_ayer/",
+    "summary": "Logical Positivism and Ayer's Verification Principle",
+    "tags": ["philosophy-of-language", "logical-positivism"]
+  },
+  {
+    "title": "Ryle & Ordinary Language Philosophy",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_ryle/",
+    "summary": "Ordinary Language Philosophy, Ryle and Wittgenstein",
+    "tags": ["philosophy-of-language", "ordinary-language-philosophy"]
+  },
+  {
+    "title": "Ambrose, Linguistic Approaches to Philosophical Problems",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_ambrose/",
+    "summary": "Ambrose's ideas on what are philosophers doing",
+    "tags": ["philosophy-of-language", "ordinary-language-philosophy"]
+  },
+  {
+    "title": "Strawson, On Referring",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_strawson/",
+    "summary": "Strawson's ideas on sentence, utterance, proposition, and presupposition",
+    "tags": ["philosophy-of-language", "ordinary-language-philosophy"]
+  },
+  {
+    "title": "Grice, Logic and Conversation",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_grice/",
+    "summary": "Grice's ideas on conversational implicatures",
+    "tags": ["philosophy-of-language", "ordinary-language-philosophy"]
+  },
+  {
+    "title": "Quine, Two Dogmas of Empiricism",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_quine/",
+    "summary": "Quine's critique of the two tenets of Logical Positivists",
+    "tags": ["philosophy-of-language"]
+  },
+  {
+    "title": "Kripke, Naming and Necessity",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_kripke/",
+    "summary": "Kripke's ideas on names as rigid designators and knowledge modalities",
+    "tags": ["philosophy-of-language"]
+  },
+  {
+    "title": "Putnam, Meaning and Reference",
+    "date": "2026-07-04",
+    "url": "posts/2026-07-04_putnam/",
+    "summary": "Putnam's critique of semantic internalism",
+    "tags": ["philosophy-of-language"]
+  }
+]
