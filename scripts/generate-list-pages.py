@@ -143,55 +143,56 @@ def render_archive(posts: list[dict[str, object]]) -> str:
 
 
 def render_search(posts: list[dict[str, object]]) -> str:
+    counts = tag_counts(posts)
     lines = [
         "      <!-- generated:search:start -->",
-        '      <section class="search-results" id="search-results" aria-live="polite">',
+        '      <section class="topics-list" aria-label="All tags">',
     ]
+    for tag in sorted(counts):
+        lines.append(
+            f'        <a class="tag tag--large" href="{tag_href(tag)}" data-search-tag data-tag-label="{esc(tag)}">{esc(tag)} <span>({counts[tag]})</span></a>'
+        )
+    lines.extend(
+        [
+            "      </section>",
+            '      <section class="search-post-results" data-search-post-results hidden aria-label="Matching posts">',
+            '        <ul class="search-post-list">',
+        ]
+    )
     for post in posts:
         tags = post["tags"]
         assert isinstance(tags, list)
         tag_text = " ".join(str(tag) for tag in tags)
-        summary = str(post["summary"])
         lines.extend(
             [
-                f'        <article class="post-entry" data-search-item data-title="{esc(str(post["title"]))}" data-summary="{esc(summary)}" data-tags="{esc(tag_text)}">',
-                '          <header class="entry-header">',
-                f'            <h2><a href="{esc(str(post["url"]))}">{esc(str(post["title"]))}</a></h2>',
-                "          </header>",
-                '          <div class="entry-content">',
-                f'            <p>{esc(summary)}</p>',
-                "          </div>",
-                '          <footer class="entry-footer">',
-                f'            <time datetime="{esc(str(post["date"]))}">{esc(str(post["date"]))}</time>',
-                '            <span class="entry-tags" aria-label="Tags">',
-                *render_tags(post, "              "),
-                "            </span>",
-                "          </footer>",
-                "        </article>",
+                f'          <li data-search-post data-title="{esc(str(post["title"]))}" data-summary="{esc(str(post["summary"]))}" data-tags="{esc(tag_text)}">',
+                f'            <a href="{esc(str(post["url"]))}">{esc(str(post["title"]))}</a>',
+                '            <div class="search-post-meta">',
+                f'              <time datetime="{esc(str(post["date"]))}">{esc(str(post["date"]))}</time>',
+                f'              <span>{esc(tag_text)}</span>',
+                "            </div>",
+                "          </li>",
             ]
         )
-    lines.extend(["      </section>", "      <!-- generated:search:end -->"])
+    lines.extend(
+        [
+            "        </ul>",
+            '        <p class="search-empty" data-search-empty hidden>No matches</p>',
+            "      </section>",
+            "      <!-- generated:search:end -->",
+        ]
+    )
     return "\n".join(lines)
 
 
-def render_topics(posts: list[dict[str, object]]) -> str:
+def tag_counts(posts: list[dict[str, object]]) -> dict[str, int]:
     counts: dict[str, int] = {}
     for post in posts:
         tags = post["tags"]
         assert isinstance(tags, list)
         for tag in tags:
             counts[str(tag)] = counts.get(str(tag), 0) + 1
-
-    lines = [
-        "      <!-- generated:topics:start -->",
-        '      <section class="topics-list" aria-label="All tags">',
-    ]
-    for tag in sorted(counts):
-        lines.append(
-            f'        <a class="tag tag--large" href="{tag_href(tag)}">{esc(tag)} <span>({counts[tag]})</span></a>'
-        )
-    lines.extend(["      </section>", "      <!-- generated:topics:end -->"])
-    return "\n".join(lines)
+    return counts
 
 
 def render_post_head(post: dict[str, object]) -> str:
@@ -296,12 +297,7 @@ def build_pages(posts: list[dict[str, object]]) -> dict[Path, str]:
         ROOT / "search.html": (
             "search",
             render_search(posts),
-            r'      <section class="search-results" id="search-results" aria-live="polite">.*?      </section>\n?',
-        ),
-        ROOT / "topics.html": (
-            "topics",
-            render_topics(posts),
-            r'      <section class="topics-list" aria-label="All tags">.*?      </section>\n?',
+            r'      <section class="(?:search-results|topics-list)"[^>]*>.*?      </section>\n?',
         ),
     }
 

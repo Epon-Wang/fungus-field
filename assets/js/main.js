@@ -116,36 +116,56 @@
     }
   }
 
-  const searchRoot = document.querySelector("[data-search-root]");
-  if (searchRoot) {
+  const searchTagsRoot = document.querySelector("[data-search-tags-root]");
+  if (searchTagsRoot) {
     const input = document.getElementById("search-input");
-    const items = Array.from(searchRoot.querySelectorAll("[data-search-item]"));
+    const tags = Array.from(searchTagsRoot.querySelectorAll("[data-search-tag]"));
+    const postResults = searchTagsRoot.querySelector("[data-search-post-results]");
+    const posts = postResults ? Array.from(postResults.querySelectorAll("[data-search-post]")) : [];
+    const emptyState = postResults ? postResults.querySelector("[data-search-empty]") : null;
 
     if (input) {
       const params = new URLSearchParams(window.location.search);
       const tagQuery = (params.get("tag") || "").trim().toLowerCase();
 
-      function filterItems(query, mode) {
+      function syncSearch(query) {
         const normalizedQuery = query.trim().toLowerCase();
-        items.forEach(function (item) {
-          const tags = (item.dataset.tags || "").toLowerCase().split(/\s+/).filter(Boolean);
-          const haystack = [
-            item.dataset.title || "",
-            item.dataset.summary || "",
-            item.dataset.tags || ""
-          ].join(" ").toLowerCase();
-          const matches = mode === "tag" ? tags.includes(normalizedQuery) : haystack.includes(normalizedQuery);
-          item.hidden = normalizedQuery.length > 0 && !matches;
+        let visiblePostCount = 0;
+
+        tags.forEach(function (tag) {
+          const label = (tag.dataset.tagLabel || tag.textContent || "").toLowerCase();
+          tag.hidden = normalizedQuery.length > 0 && !label.includes(normalizedQuery);
         });
+
+        if (postResults) {
+          postResults.hidden = normalizedQuery.length === 0;
+        }
+
+        posts.forEach(function (post) {
+          const haystack = [
+            post.dataset.title || "",
+            post.dataset.summary || "",
+            post.dataset.tags || ""
+          ].join(" ").toLowerCase();
+          const matches = normalizedQuery.length > 0 && haystack.includes(normalizedQuery);
+          post.hidden = !matches;
+          if (matches) {
+            visiblePostCount += 1;
+          }
+        });
+
+        if (emptyState) {
+          emptyState.hidden = normalizedQuery.length === 0 || visiblePostCount > 0;
+        }
       }
 
       if (tagQuery.length > 0) {
         input.value = tagQuery;
-        filterItems(tagQuery, "tag");
+        syncSearch(tagQuery);
       }
 
       input.addEventListener("input", function () {
-        filterItems(input.value, "search");
+        syncSearch(input.value);
       });
     }
   }

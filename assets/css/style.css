@@ -267,7 +267,6 @@ body.dark .theme-toggle__icon--moon {
   width: min(100% - 32px, 980px);
 }
 
-.home-info,
 .post-entry,
 .post-single,
 .not-found {
@@ -278,8 +277,8 @@ body.dark .theme-toggle__icon--moon {
 }
 
 .home-info {
-  padding: 30px;
-  margin-bottom: 22px;
+  padding: 12px 0 28px;
+  margin-bottom: 0;
 }
 
 .home-info h1 {
@@ -440,15 +439,44 @@ body.dark .theme-toggle__icon--moon {
   border-color: var(--accent);
 }
 
-.search-results {
-  display: grid;
-  gap: 16px;
-}
-
 .topics-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.search-post-results {
+  margin-top: 22px;
+}
+
+.search-post-list {
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  list-style: none;
+}
+
+.search-post-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.search-post-list a {
+  font-weight: 650;
+}
+
+.search-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 2px;
+  color: var(--secondary);
+  font-size: 0.86rem;
+}
+
+.search-empty {
+  margin: 14px 0 0;
+  color: var(--secondary);
 }
 
 .post-single {
@@ -828,7 +856,6 @@ pre code {
     margin-left: auto;
   }
 
-  .home-info,
   .post-entry,
   .post-single {
     padding: 22px;
