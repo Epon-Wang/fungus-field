@@ -106,30 +106,38 @@ def render_home(posts: list[dict[str, object]]) -> str:
 
 
 def render_archive(posts: list[dict[str, object]]) -> str:
-    grouped: OrderedDict[str, list[dict[str, object]]] = OrderedDict()
+    grouped: OrderedDict[str, OrderedDict[str, list[dict[str, object]]]] = OrderedDict()
     for post in posts:
         year = str(post["date"])[:4]
-        grouped.setdefault(year, []).append(post)
+        post_date = str(post["date"])
+        grouped.setdefault(year, OrderedDict()).setdefault(post_date, []).append(post)
 
     lines = ["      <!-- generated:archive:start -->"]
-    for year, year_posts in grouped.items():
+    for year, date_groups in grouped.items():
         lines.extend(
             [
                 f'      <section class="archive-year" aria-labelledby="archive-{esc(year)}">',
                 f'        <h2 id="archive-{esc(year)}">{esc(year)}</h2>',
-                '        <ul class="archive-list">',
             ]
         )
-        for post in year_posts:
+        for post_date, date_posts in date_groups.items():
             lines.extend(
                 [
-                    "          <li>",
-                    f'            <time datetime="{esc(str(post["date"]))}">{esc(str(post["date"]))}</time>',
-                    f'            <a href="{esc(str(post["url"]))}">{esc(str(post["title"]))}</a>',
-                    "          </li>",
+                    '        <div class="archive-date-group">',
+                    f'          <time class="archive-date" datetime="{esc(post_date)}">{esc(post_date)}</time>',
+                    '          <ul class="archive-list">',
                 ]
             )
-        lines.extend(["        </ul>", "      </section>"])
+            for post in date_posts:
+                lines.extend(
+                    [
+                        "            <li>",
+                        f'              <a href="{esc(str(post["url"]))}">{esc(str(post["title"]))}</a>',
+                        "            </li>",
+                    ]
+                )
+            lines.extend(["          </ul>", "        </div>"])
+        lines.append("      </section>")
     lines.append("      <!-- generated:archive:end -->")
     return "\n".join(lines)
 
