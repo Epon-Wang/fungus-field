@@ -1,6 +1,8 @@
 # Fungus-Field Blog Archive
 
-The blogs are rendered in Typora style
+The blogs use static HTML with scoped support for Typora exports.
+
+The visual theme takes typography and color inspiration from [SGS](https://sgs-rl.github.io/): a black navigation bar, white reading surface, vermilion accents, and an asymmetric topic index in yellow, pink, cobalt, and mint. Topic counts come from `posts.json`; the featured topic labels live in `HOME_TOPICS` in the generator. `tokens.css` holds the light/dark palette, typography, and spacing. The final section of `assets/css/style.css` adapts these tokens to the existing pages. Inter and Inter Tight are self-hosted in `assets/fonts/` with their OFL licenses; Chinese text uses the system font fallback.
 
 ## Usage
 

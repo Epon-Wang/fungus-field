@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-14",
+  "framework": "Static HTML, shared CSS and vanilla JavaScript; Python list generator",
+  "sources": {
+    "styles": "assets/css/style.css",
+    "interactions": "assets/js/main.js",
+    "generator": "scripts/generate-list-pages.py"
+  },
+  "existing_fonts": "System sans-serif; system monospace; scoped Typora sans-serif",
+  "existing_palette": "Cool off-white, magenta light accent, cyan dark accent",
+  "existing_spacing": "Mixed pixel spacing, mostly multiples of 4",
+  "motion": "No library; global theme transition and card hover movement",
+  "preserve": ["routes", "post content", "generation workflow", "search", "tag navigation", "theme preference", "Typora math and image support"],
+  "requested_change": "Use https://sgs-rl.github.io/ as a style and color reference"
+}

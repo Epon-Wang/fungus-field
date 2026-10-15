@@ -16,6 +16,12 @@ from urllib.parse import quote
 ROOT = Path(__file__).resolve().parents[1]
 POSTS_FILE = ROOT / "posts.json"
 SITE_TITLE = "Fungus Field"
+HOME_TOPICS = (
+    ("philosophy-of-language", "Philosophy of language"),
+    ("reinforcement-learning", "Reinforcement learning"),
+    ("computer-vision", "Computer vision"),
+    ("optimal-control", "Optimal control"),
+)
 
 
 def esc(value: str) -> str:
@@ -24,6 +30,14 @@ def esc(value: str) -> str:
 
 def tag_href(tag: str) -> str:
     return "search.html?tag=" + quote(tag.lower())
+
+
+def post_href(url: str) -> str:
+    # file:// previews cannot rely on a server resolving directory indexes.
+    path = Path(url)
+    if not path.suffix:
+        path /= "index.html"
+    return path.as_posix()
 
 
 def relative_url(from_path: Path, target: str) -> str:
@@ -77,16 +91,34 @@ def render_tags(post: dict[str, object], prefix: str = "", href_for_tag=tag_href
 
 
 def render_home(posts: list[dict[str, object]]) -> str:
+    counts = tag_counts(posts)
     lines = [
         "      <!-- generated:home:start -->",
-        '      <section class="post-list" aria-label="Recent posts">',
+        '      <nav class="topic-index" aria-label="Browse by topic">',
     ]
+    for tag, title in HOME_TOPICS:
+        count = counts.get(tag, 0)
+        if count == 0:
+            continue
+        noun = "note" if count == 1 else "notes"
+        lines.extend(
+            [
+                f'        <a class="topic-panel" data-topic="{tag}" href="{tag_href(tag)}">',
+                f'          <span class="topic-panel__name">{esc(title)}</span>',
+                f'          <span class="topic-panel__meta"><span>{count} {noun}</span><span aria-hidden="true">→</span></span>',
+                "        </a>",
+            ]
+        )
+    lines.extend([
+        "      </nav>",
+        '      <section class="post-list" aria-label="Recent posts">',
+    ])
     for post in posts:
         lines.extend(
             [
                 '        <article class="post-entry">',
                 '          <header class="entry-header">',
-                f'            <h2><a href="{esc(str(post["url"]))}">{esc(str(post["title"]))}</a></h2>',
+                f'            <h2><a href="{esc(post_href(str(post["url"])))}">{esc(str(post["title"]))}</a></h2>',
                 "          </header>",
                 '          <div class="entry-content">',
                 f'            <p>{esc(str(post["summary"]))}</p>',
@@ -97,7 +129,7 @@ def render_home(posts: list[dict[str, object]]) -> str:
                 *render_tags(post, "              "),
                 "            </span>",
                 "          </footer>",
-                f'          <a class="entry-link" aria-label="Read {esc(str(post["title"]))}" href="{esc(str(post["url"]))}"></a>',
+                f'          <a class="entry-link" aria-label="Read {esc(str(post["title"]))}" href="{esc(post_href(str(post["url"])))}"></a>',
                 "        </article>",
             ]
         )
@@ -132,7 +164,7 @@ def render_archive(posts: list[dict[str, object]]) -> str:
                 lines.extend(
                     [
                         "            <li>",
-                        f'              <a href="{esc(str(post["url"]))}">{esc(str(post["title"]))}</a>',
+                        f'              <a href="{esc(post_href(str(post["url"])))}">{esc(str(post["title"]))}</a>',
                         "            </li>",
                     ]
                 )
@@ -166,7 +198,7 @@ def render_search(posts: list[dict[str, object]]) -> str:
         lines.extend(
             [
                 f'          <li data-search-post data-title="{esc(str(post["title"]))}" data-summary="{esc(str(post["summary"]))}" data-tags="{esc(tag_text)}">',
-                f'            <a href="{esc(str(post["url"]))}">{esc(str(post["title"]))}</a>',
+                f'            <a href="{esc(post_href(str(post["url"])))}">{esc(str(post["title"]))}</a>',
                 '            <div class="search-post-meta">',
                 f'              <time datetime="{esc(str(post["date"]))}">{esc(str(post["date"]))}</time>',
                 f'              <span>{esc(tag_text)}</span>',
@@ -228,9 +260,7 @@ def render_post_header(post: dict[str, object], page_path: Path) -> str:
 
 
 def post_page_path(post: dict[str, object]) -> Path:
-    path = ROOT / str(post["url"])
-    if not path.suffix:
-        path = path / "index.html"
+    path = ROOT / post_href(str(post["url"]))
     try:
         path.resolve().relative_to(ROOT)
     except ValueError as exc:

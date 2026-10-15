@@ -1,0 +1,103 @@
+/* Hallmark · macrostructure: Index-First with a typographic masthead · tone: Swiss editorial
+ * theme: studied-DNA (source: https://sgs-rl.github.io/) · studied: yes · DNA-source: url
+ * observed: Inter Tight / Inter; white #fff, ink #111, vermilion #e4321b
+ * adaptation: readable article measure, accessible link red, paired dark theme
+ * user reference: Mondrian-like yellow / pink / cobalt / mint topic fields
+ * nav: N7 compact slab · footer: Ft2 inline rule · enrichment: none
+ * Hallmark · pre-emit critique: P4 H4 E4 S5 R5 V4
+ */
+
+@font-face {
+  font-family: "Inter Tight";
+  src: url("assets/fonts/inter-tight-latin-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("assets/fonts/inter-latin-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --color-light-paper: oklch(100% 0 0);
+  --color-deep-ink: oklch(17.764% 0 0);
+  --color-light-muted: oklch(49.97% 0 0);
+  --color-paper: var(--color-light-paper);
+  --color-panel: oklch(96.632% 0.00397 106.47);
+  --color-ink: var(--color-deep-ink);
+  --color-muted: var(--color-light-muted);
+  --color-rule: oklch(88.445% 0.00406 106.48);
+  --color-accent: oklch(59.88% 0.21608 30.96);
+  --color-link: oklch(54.406% 0.19718 30.88);
+  --color-nav: var(--color-deep-ink);
+  --color-on-nav: var(--color-light-paper);
+  --color-nav-muted: oklch(86.311% 0.01111 95.18);
+  --color-nav-accent: var(--color-accent);
+  --color-on-accent: oklch(100% 0 0);
+  --color-focus: var(--color-link);
+  --color-dark-paper: var(--color-deep-ink);
+  --color-dark-panel: oklch(27% 0.004 106);
+  --color-dark-ink: oklch(95.803% 0.00826 91.48);
+  --color-dark-muted: oklch(76.872% 0.00986 100.03);
+  --color-dark-rule: oklch(43% 0.008 106.81);
+  --color-dark-accent: oklch(72.94% 0.16737 30.29);
+  --color-topic-language: oklch(92.584% 0.19385 107.10);
+  --color-topic-learning: oklch(80.125% 0.09984 3.65);
+  --color-topic-vision: oklch(52.361% 0.19192 261.00);
+  --color-topic-control: oklch(87.156% 0.06802 180.84);
+  --color-topic-ink: var(--color-deep-ink);
+  --color-topic-ink-inverse: var(--color-light-paper);
+
+  --font-display: "Inter Tight", "Helvetica Neue", Arial, "Noto Sans CJK SC", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-gutter: clamp(1rem, 4vw, 3rem);
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-title: clamp(1.5rem, 2.5vw, 2rem);
+  --text-topic: clamp(1.125rem, 4.8vw, 1.5rem);
+  --text-topic-wide: clamp(1.5rem, 3vw, 2.5rem);
+  --text-topic-lead: clamp(2.25rem, 4.2vw, 3.5rem);
+  --text-page: clamp(3rem, 7vw, 5.25rem);
+  --text-post: clamp(2.25rem, 5.2vw, 4.5rem);
+  --text-display: clamp(4.5rem, 10.8vw, 9rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-short: 150ms;
+  --rule-width: 1px;
+  --radius-control: 2px;
+  --width-site: 1120px;
+  --width-post: 920px;
+  --width-reading: 800px;
+}
+
+body.dark {
+  --color-paper: var(--color-dark-paper);
+  --color-panel: var(--color-dark-panel);
+  --color-ink: var(--color-dark-ink);
+  --color-muted: var(--color-dark-muted);
+  --color-rule: var(--color-dark-rule);
+  --color-accent: var(--color-dark-accent);
+  --color-link: var(--color-dark-accent);
+  --color-on-accent: var(--color-dark-paper);
+  --color-nav: var(--color-light-paper);
+  --color-on-nav: var(--color-deep-ink);
+  --color-nav-muted: var(--color-light-muted);
+}

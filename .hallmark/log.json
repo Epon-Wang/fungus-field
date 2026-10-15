@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2026-10-14",
+    "scope": "app",
+    "macrostructure": "Index-First with a typographic masthead",
+    "theme": "studied-DNA",
+    "source": "https://sgs-rl.github.io/",
+    "source_mode": "url and user screenshots",
+    "nav": "N7 compact slab",
+    "footer": "Ft2 inline rule",
+    "enrichment": "none",
+    "brief": "Adapt SGS Swiss typography and user-highlighted Mondrian-like color fields to Fungus Field's existing blog",
+    "observed_fonts": ["Inter Tight", "Inter", "JetBrains Mono"],
+    "observed_colors": {"paper": "#ffffff", "ink": "#111111", "accent": "#e4321b", "yellow": "#f6ee1f", "pink": "#f5a3b7", "cobalt": "#1f61d6", "mint": "#a3e4d7"},
+    "adaptations": ["User-requested large color fields override the generic single-accent rule", "Topic navigation with actual post counts", "Accessible darker red for small links", "Paired dark palette", "Readable article width", "Local Latin font files and system Chinese fallback"],
+    "rhythm": "User screenshots show colored section bands, unequal rectangular modules and black rules; adapted as topic navigation",
+    "remote_safety": {"public_https": true, "redirects_checked": "unknown", "prompt_injection_detected": false},
+    "critique": {"philosophy": 4, "hierarchy": 4, "execution": 4, "specificity": 5, "restraint": 5, "variety": 4}
+  }
+]

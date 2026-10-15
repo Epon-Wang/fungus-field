@@ -3,20 +3,47 @@ set -euo pipefail
 
 python3 scripts/generate-list-pages.py --check
 
-rg -n "posts/2026-07-04_frege/|posts/2026-07-04_russell/|posts/2026-07-04_ayer/|posts/2026-07-04_ryle/|posts/2026-07-04_ambrose/" \
-  index.html archives.html >/dev/null
-
 rg -n '<span>\([0-9]+\)</span>' search.html >/dev/null
 
 python3 - <<'PY'
+import html
 import json
 import re
 import sys
 from pathlib import Path
+from html.parser import HTMLParser
+
+
+class PostLinks(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.hrefs = []
+
+    def handle_starttag(self, tag, attrs):
+        href = dict(attrs).get("href", "")
+        if tag == "a" and href.startswith("posts/"):
+            self.hrefs.append(href)
 
 posts = json.loads(Path("posts.json").read_text(encoding="utf-8"))
 archive = Path("archives.html").read_text(encoding="utf-8")
 dates = sorted({post["date"] for post in posts})
+
+for page in ("index.html", "archives.html", "search.html"):
+    content = Path(page).read_text(encoding="utf-8")
+    links = PostLinks()
+    links.feed(content)
+    for href in links.hrefs:
+        if not Path(href).is_file():
+            print(f'{page}: post links must open a file directly for local preview: {href}', file=sys.stderr)
+            sys.exit(1)
+    for post in posts:
+        path = Path(post["url"])
+        if not path.suffix:
+            path /= "index.html"
+        href = html.escape(path.as_posix(), quote=True)
+        if f'href="{href}"' not in content:
+            print(f'{page} is missing the post link: {post["url"]}', file=sys.stderr)
+            sys.exit(1)
 
 for post_date in dates:
     count = len(re.findall(rf'<time\b[^>]*datetime="{re.escape(post_date)}"[^>]*>{re.escape(post_date)}</time>', archive))
